@@ -78,11 +78,19 @@ header {
   justify-content: center;
 }
 #changeBtn,
-#deleteBtn {
+#deleteBtnWrap {
   width: 35%;
   height: 40px;
   line-height: 40px;
   margin: 0 auto;
+}
+#deleteBtn {
+  width: 100%;
+  height: 38px;
+  border-radius: 15px;
+  padding: 0;
+  border: none;
+  background: #fff;
 }
 
 /* edit */
@@ -114,7 +122,7 @@ header {
 #addBtn,
 #saveBtn,
 #changeBtn,
-#deleteBtn,
+#deleteBtnWrap,
 #updateBtn {
   text-align: center;
   background: #fff;
@@ -124,6 +132,7 @@ header {
 #addBtn:hover,
 #saveBtn:hover,
 #changeBtn:hover,
+#deleteBtnWrap:hover,
 #deleteBtn:hover,
 #updateBtn:hover {
   background: #eee;
@@ -131,6 +140,7 @@ header {
 #addBtn:active,
 #saveBtn:active,
 #changeBtn:active,
+#deleteBtnWrap:active,
 #deleteBtn:active,
 #updateBtn:active {
   background: #ddd;

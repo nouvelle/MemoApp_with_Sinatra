@@ -70,9 +70,20 @@ end
 #   # 何か修正
 # end
 
-# delete "/api/memos/:id" do |id|
-#   # 何か削除
-# end
+delete "/api/memos/:id" do |id|
+  @id = params[:id]
+  memos = CSV.read("./memo_db.csv")
+  memos.delete_if { |array| array[0] == @id}
+
+  CSV.open("./memo_db.csv","w") do |csv|
+    memos.each do |array|
+      csv << array
+    end
+  end
+
+  redirect "/"
+  erb :index
+end
 
 # get "/hello/:name" do
 #   # "GET /hello/foo" と "GET /hello/bar" にマッチ
