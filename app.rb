@@ -15,6 +15,14 @@ get "/new" do
   erb :new
 end
 
+get "/show/:id" do |id|
+  data_list = CSV.read("./memo_db.csv")
+  data_list.each do |data|
+    @show_data = data if data[0] == id
+  end
+  erb :show
+end
+
 get "/edit/:id" do |id|
   data_list = CSV.read("./memo_db.csv")
   data_list.each do |data|
