@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メモ帳 📋</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>メモアプリ</h1>
+      <div id="addBtn"><a href="./new">追加</a></div>
+    </header>
+    <div class="lists">
+      <ui>
+        <% @data_list.each do |data| %>
+          <li><a href="<%= "/edit/#{data[0]}" %>"><%= data[1] %></a></li>
+        <% end %>
+      </ui>
+    </div>
+  </div>
+</body>
+</html>

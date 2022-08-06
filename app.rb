@@ -1,45 +1,86 @@
 require "sinatra"
 require "sinatra/reloader"
+require "csv"
 
-get "/memos" do
-  "Hello, Sinatra"
+def memo
+  @memo = Memo.new
 end
 
-post "/memos" do
-  # 何か生成
+get "/" do
+  @data_list = CSV.read("./memo_db.csv").sort
+  erb :index
 end
 
-get "/memos/:id" do |id|
-  "This is #{id}'s memo."
+get "/new" do
+  erb :new
 end
 
-put "/memos/:id" do |id|
-  # 何か更新
+get "/edit/:id" do |id|
+  data_list = CSV.read("./memo_db.csv")
+  data_list.each do |data|
+    @edit_data = data if data[0] == id
+  end
+  erb :edit
 end
 
-patch "/memos/:id" do |id|
-  # 何か修正
+# get "/delete" do
+#   erb :delete
+# end
+
+# get "/api/memos" do
+#   "Hello"
+# end
+
+post "/api/memos" do
+  @id = params[:id]
+  @title = params[:title]
+  @contents = params[:contents]
+
+  memos = CSV.read("./memo_db.csv")
+  memos.delete_if { |array| array[0] == @id}
+
+  CSV.open("./memo_db.csv","w") do |csv|
+    memos.each do |array|
+      csv << array
+    end
+    csv << [@id, @title, @contents]
+  end
+
+  redirect "/"
+  erb :index
 end
 
-delete "/memos/:id" do |id|
-  # 何か削除
-end
+# get "/api/memos/:id" do |id|
+#   "This is #{id}'s memo."
+# end
 
-get "/hello/:name" do
-  # "GET /hello/foo" と "GET /hello/bar" にマッチ
-  # params["name"] は "foo" か "bar"
-  "Hello #{params['name']}!"
-end
+# put "/api/memos/:id" do |id|
+#   # 何か更新
+# end
 
-get "/hello/:name" do |n|
-  # params[]をいちいち書くのが面倒な時
-  "Hello #{n}!"
-end
+# patch "/api/memos/:id" do |id|
+#   # 何か修正
+# end
 
-get '/foo', :agent => /Songbird (\d\.\d)[\d\/]*?/ do
-  "Songbirdのバージョン #{params['agent'][0]}を使ってます。"
-end
+# delete "/api/memos/:id" do |id|
+#   # 何か削除
+# end
 
-get '/foo' do
-  # Songbird以外のブラウザにマッチ
-end
+# get "/hello/:name" do
+#   # "GET /hello/foo" と "GET /hello/bar" にマッチ
+#   # params["name"] は "foo" か "bar"
+#   "Hello #{params["name"]}!"
+# end
+
+# get "/hello/:name" do |n|
+#   # params[]をいちいち書くのが面倒な時
+#   "Hello #{n}!"
+# end
+
+# get "/foo", :agent => /Songbird (\d\.\d)[\d\/]*?/ do
+#   "Songbirdのバージョン #{params["agent"][0]}を使ってます。"
+# end
+
+# get "/foo" do
+#   # Songbird以外のブラウザにマッチ
+# end
