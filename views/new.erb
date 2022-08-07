@@ -13,9 +13,9 @@
     <header>
       <h1>メモアプリ</h1>
     </header>
-    <form method="post" action="/api/memos" class="new">
-      <input type="text" id="newTitle" />
-      <textarea id="newContents"></textarea>
+    <form action="/api/memos" method="POST" class="new">
+      <input type="text" name="title" id="newTitle" />
+      <textarea name="contents" id="newContents"></textarea>
       <input type="submit" value="保存" id="saveBtn" />
     </form>
   </div>

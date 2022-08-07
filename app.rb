@@ -40,18 +40,14 @@ end
 # end
 
 post "/api/memos" do
-  @id = params[:id]
   @title = params[:title]
   @contents = params[:contents]
 
   memos = CSV.read("./memo_db.csv")
-  memos.delete_if { |array| array[0] == @id}
+  id = memos.map { |array| array[0] }.max
 
-  CSV.open("./memo_db.csv","w") do |csv|
-    memos.each do |array|
-      csv << array
-    end
-    csv << [@id, @title, @contents]
+  CSV.open("./memo_db.csv","a") do |csv|
+    csv << [id.to_i + 1, @title, @contents]
   end
 
   redirect "/"
