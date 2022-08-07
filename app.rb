@@ -86,9 +86,8 @@ end
 
 
 delete "/api/memos/:id" do |id|
-  @id = params[:id]
   memos = CSV.read("./memo_db.csv")
-  memos.delete_if { |array| array[0] == @id}
+  memos.delete_if { |array| array[0] == id}
 
   CSV.open("./memo_db.csv","w") do |csv|
     memos.each do |array|
