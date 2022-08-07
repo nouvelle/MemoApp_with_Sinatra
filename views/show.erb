@@ -5,9 +5,7 @@
   <div id="showTitle"><%= @show_data[1] %></div>
   <div id="showContents"><%= @show_data[2] %></div>
   <div class="btnWrap">
-    <div id="changeBtn">
-      <a href="<%= "/edit/#{@show_data[0]}" %>">変更</a>
-    </div>
+    <a href="<%= "/edit/#{@show_data[0]}" %>" id="changeBtn">変更</a>
     <form action="<%= "/api/memos/#{@show_data[0]}" %>" method="POST" id="deleteBtnWrap" >
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="削除" id="deleteBtn" />

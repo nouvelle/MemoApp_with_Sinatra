@@ -6,9 +6,7 @@
   <textarea name="contents"  id="editContents"><%= @edit_data[2] %></textarea>
   <input type="hidden" name="_method" value="PATCH">
   <div class="btnWrap">
-    <div id="backBtn">
-      <a href="#" onclick="history.back(-1);return false;">戻る</a>
-    </div>
+    <a href="#" onclick="history.back(-1);return false;" id="backBtn">戻る</a>
     <input type="submit" value="変更" id="updateBtn" />
   </div>
 </form>

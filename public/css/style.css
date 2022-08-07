@@ -143,6 +143,7 @@ header {
 #backBtn:hover,
 #updateBtn:hover {
   background: #eee;
+  cursor: pointer;
 }
 #addBtn:active,
 #saveBtn:active,
