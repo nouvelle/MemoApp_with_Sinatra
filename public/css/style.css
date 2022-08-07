@@ -111,8 +111,13 @@ header {
   margin-bottom: 30px;
   font-size: 24px;
 }
+.btnWrap {
+  display: flex;
+  justify-content: center;
+}
+#backBtn,
 #updateBtn {
-  width: 130px;
+  width: 35%;
   height: 40px;
   line-height: 40px;
   margin: 0 auto;
@@ -123,6 +128,7 @@ header {
 #saveBtn,
 #changeBtn,
 #deleteBtnWrap,
+#backBtn,
 #updateBtn {
   text-align: center;
   background: #fff;
@@ -134,6 +140,7 @@ header {
 #changeBtn:hover,
 #deleteBtnWrap:hover,
 #deleteBtn:hover,
+#backBtn:hover,
 #updateBtn:hover {
   background: #eee;
 }
@@ -142,6 +149,7 @@ header {
 #changeBtn:active,
 #deleteBtnWrap:active,
 #deleteBtn:active,
+#backBtn:active,
 #updateBtn:active {
   background: #ddd;
 }

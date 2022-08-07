@@ -5,5 +5,10 @@
   <input type="text" name="title" id="editTitle" value="<%= @edit_data[1] %>" />
   <textarea name="contents"  id="editContents"><%= @edit_data[2] %></textarea>
   <input type="hidden" name="_method" value="PATCH">
-  <input type="submit" value="変更" id="updateBtn" />
+  <div class="btnWrap">
+    <div id="backBtn">
+      <a href="#" onclick="history.back(-1);return false;">戻る</a>
+    </div>
+    <input type="submit" value="変更" id="updateBtn" />
+  </div>
 </form>
