@@ -58,6 +58,24 @@ post "/api/memos" do
   erb :index
 end
 
+patch "/api/memos/:id" do |id|
+  @title = params[:title]
+  @contents = params[:contents]
+
+  memos = CSV.read("./memo_db.csv")
+  memos.delete_if { |array| array[0] == id}
+
+  CSV.open("./memo_db.csv","w") do |csv|
+    memos.each do |array|
+      csv << array
+    end
+    csv << [id, @title, @contents]
+  end
+
+  redirect "/"
+  erb :index
+end
+
 # get "/api/memos/:id" do |id|
 #   "This is #{id}'s memo."
 # end
@@ -66,9 +84,6 @@ end
 #   # 何か更新
 # end
 
-# patch "/api/memos/:id" do |id|
-#   # 何か修正
-# end
 
 delete "/api/memos/:id" do |id|
   @id = params[:id]
