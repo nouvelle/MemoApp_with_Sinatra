@@ -81,3 +81,7 @@ delete "/api/memos/:id" do |id|
   redirect "/"
   erb :index
 end
+
+not_found do
+  erb :notfound
+end

@@ -123,17 +123,33 @@ header {
   margin: 0 auto;
 }
 
+/* 404 */
+.notFound {
+  padding: 10px 25px;
+}
+.notFound h1 {
+  margin: 20px 20px 40px;
+}
+#goToTopBtn {
+  width: 130px;
+  height: 40px;
+  margin: 0 auto;
+  line-height: 40px;
+}
+
 /* ボタン */
 #addBtn,
 #saveBtn,
 #changeBtn,
 #deleteBtnWrap,
 #backBtn,
-#updateBtn {
+#updateBtn,
+#goToTopBtn {
   text-align: center;
   background: #fff;
   border: 1px solid #999;
   border-radius: 15px;
+  display: block;
 }
 #addBtn:hover,
 #saveBtn:hover,
@@ -141,7 +157,8 @@ header {
 #deleteBtnWrap:hover,
 #deleteBtn:hover,
 #backBtn:hover,
-#updateBtn:hover {
+#updateBtn:hover,
+#goToTopBtn:hover {
   background: #eee;
   cursor: pointer;
 }
@@ -151,6 +168,7 @@ header {
 #deleteBtnWrap:active,
 #deleteBtn:active,
 #backBtn:active,
-#updateBtn:active {
+#updateBtn:active,
+#goToTopBtn:active {
   background: #ddd;
 }
