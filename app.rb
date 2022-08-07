@@ -7,15 +7,18 @@ def memo
 end
 
 get "/" do
+  @title = "メモ帳 📋"
   @data_list = CSV.read("./memo_db.csv").sort
   erb :index
 end
 
 get "/new" do
+  @title = "メモ帳 📋 - 新規作成"
   erb :new
 end
 
 get "/show/:id" do |id|
+  @title = "メモ帳 📋 - 表示"
   data_list = CSV.read("./memo_db.csv")
   data_list.each do |data|
     @show_data = data if data[0] == id
@@ -24,20 +27,13 @@ get "/show/:id" do |id|
 end
 
 get "/edit/:id" do |id|
+  @title = "メモ帳 📋 - 修正"
   data_list = CSV.read("./memo_db.csv")
   data_list.each do |data|
     @edit_data = data if data[0] == id
   end
   erb :edit
 end
-
-# get "/delete" do
-#   erb :delete
-# end
-
-# get "/api/memos" do
-#   "Hello"
-# end
 
 post "/api/memos" do
   @title = params[:title]
@@ -72,15 +68,6 @@ patch "/api/memos/:id" do |id|
   erb :index
 end
 
-# get "/api/memos/:id" do |id|
-#   "This is #{id}'s memo."
-# end
-
-# put "/api/memos/:id" do |id|
-#   # 何か更新
-# end
-
-
 delete "/api/memos/:id" do |id|
   memos = CSV.read("./memo_db.csv")
   memos.delete_if { |array| array[0] == id}
@@ -94,22 +81,3 @@ delete "/api/memos/:id" do |id|
   redirect "/"
   erb :index
 end
-
-# get "/hello/:name" do
-#   # "GET /hello/foo" と "GET /hello/bar" にマッチ
-#   # params["name"] は "foo" か "bar"
-#   "Hello #{params["name"]}!"
-# end
-
-# get "/hello/:name" do |n|
-#   # params[]をいちいち書くのが面倒な時
-#   "Hello #{n}!"
-# end
-
-# get "/foo", :agent => /Songbird (\d\.\d)[\d\/]*?/ do
-#   "Songbirdのバージョン #{params["agent"][0]}を使ってます。"
-# end
-
-# get "/foo" do
-#   # Songbird以外のブラウザにマッチ
-# end

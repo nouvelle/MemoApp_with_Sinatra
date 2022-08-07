@@ -1,31 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>メモ帳 📋 - 表示</title>
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1>メモアプリ</h1>
-    </header>
-    <div class="show">
-      <div id="showTitle"><%= @show_data[1] %></div>
-      <div id="showContents"><%= @show_data[2] %></div>
-      <div class="btnWrap">
-        <div id="changeBtn">
-          <a href="<%= "/edit/#{@show_data[0]}" %>">変更</a>
-        </div>
-        <form action="<%= "/api/memos/#{@show_data[0]}" %>" method="POST" id="deleteBtnWrap" >
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="削除" id="deleteBtn" />
-        </form>
-      </div>
+<header>
+  <h1>メモアプリ</h1>
+</header>
+<div class="show">
+  <div id="showTitle"><%= @show_data[1] %></div>
+  <div id="showContents"><%= @show_data[2] %></div>
+  <div class="btnWrap">
+    <div id="changeBtn">
+      <a href="<%= "/edit/#{@show_data[0]}" %>">変更</a>
     </div>
+    <form action="<%= "/api/memos/#{@show_data[0]}" %>" method="POST" id="deleteBtnWrap" >
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="削除" id="deleteBtn" />
+    </form>
   </div>
-</body>
-</html>
+</div>
