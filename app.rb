@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'csv'
 require './memo'
-require "erb"
+require 'erb'
 include ERB::Util
 
 ####################
