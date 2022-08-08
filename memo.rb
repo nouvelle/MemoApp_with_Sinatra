@@ -19,7 +19,7 @@ class Memo
   end
 
   def create(title, contents)
-    id = @data_list.map { |array| array[0] }.max
+    id = @data_list.map { |array| array[0].to_i }.max
     CSV.open('./memo_db.csv', 'a') do |csv|
       csv << [id.to_i + 1, title, contents]
     end
