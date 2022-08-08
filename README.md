@@ -28,5 +28,16 @@ $ ruby app.rb
 # 5. [http://localhost:4567/](http://localhost:4567/) にアクセスできたらセットアップ完了です 👍
 ```
 
+## リンターチェック
+下記のコマンドを実行することで、各種スタイルのチェックを行うことができます。
+
+```
+# 1. Rubocop チェック
+$ bundle exec rubocop
+
+# 2. ERB Lint チェック
+$ bundle exec erblint --lint-all
+```
+
 ## その他
 - 保存データは `memo_db.csv` ファイルに保存されていきます。
