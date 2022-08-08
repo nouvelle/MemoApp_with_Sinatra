@@ -3,7 +3,7 @@
 # Memoクラス
 class Memo
   def initialize
-    @data_list = CSV.read('./memo_db.csv').sort
+    @data_list = CSV.read('./memo_db.csv').sort_by { |x| x[0].to_i }
   end
 
   def get
