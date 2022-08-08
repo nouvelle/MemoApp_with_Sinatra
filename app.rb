@@ -5,7 +5,15 @@ require 'sinatra/reloader'
 require 'csv'
 require './memo'
 require 'erb'
-include ERB::Util
+
+# module Helper
+module Helper
+  def html_escape_helper(text)
+    ERB::Util.html_escape(text)
+  end
+
+  module_function :html_escape_helper
+end
 
 ####################
 # View画面からの要求
@@ -41,8 +49,8 @@ end
 # API呼び出し
 ####################
 post '/api/memos' do
-  title = html_escape(params[:title])
-  contents = html_escape(params[:contents])
+  title = Helper.html_escape_helper(params[:title])
+  contents = Helper.html_escape_helper(params[:contents])
   Memo.new.create(title, contents)
 
   redirect '/'
@@ -50,8 +58,8 @@ post '/api/memos' do
 end
 
 patch '/api/memos/:id' do |id|
-  title = html_escape(params[:title])
-  contents = html_escape(params[:contents])
+  title = Helper.html_escape_helper(params[:title])
+  contents = Helper.html_escape_helper(params[:contents])
   Memo.new.update(id, title, contents)
 
   redirect '/'
