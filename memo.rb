@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Memoクラス
 class Memo
-  def initialize()
-    @data_list = CSV.read("./memo_db.csv").sort
+  def initialize
+    @data_list = CSV.read('./memo_db.csv').sort
   end
 
   def get
@@ -17,14 +20,14 @@ class Memo
 
   def create(title, contents)
     id = @data_list.map { |array| array[0] }.max
-    CSV.open("./memo_db.csv","a") do |csv|
+    CSV.open('./memo_db.csv', 'a') do |csv|
       csv << [id.to_i + 1, title, contents]
     end
   end
 
   def update(id, title, contents)
-    @data_list.delete_if { |array| array[0] == id}
-    CSV.open("./memo_db.csv","w") do |csv|
+    @data_list.delete_if { |array| array[0] == id }
+    CSV.open('./memo_db.csv', 'w') do |csv|
       @data_list.each do |array|
         csv << array
       end
@@ -33,8 +36,8 @@ class Memo
   end
 
   def delete(id)
-    @data_list.delete_if { |array| array[0] == id}
-    CSV.open("./memo_db.csv","w") do |csv|
+    @data_list.delete_if { |array| array[0] == id }
+    CSV.open('./memo_db.csv', 'w') do |csv|
       @data_list.each do |array|
         csv << array
       end
