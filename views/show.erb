@@ -2,8 +2,8 @@
   <h1><a href="/">メモアプリ</a></h1>
 </header>
 <div class="show">
-  <div id="showTitle"><%= @show_data[1] %></div>
-  <div id="showContents"><%= @show_data[2] %></div>
+  <input disabled value="<%= @show_data[1] %>" id="showTitle"></input>
+  <textarea disabled id="showContents"><%= @show_data[2] %></textarea>
   <div class="btnWrap">
     <a href="<%= "/edit/#{@show_data[0]}" %>" id="changeBtn">変更</a>
     <form action="<%= "/api/memos/#{@show_data[0]}" %>" method="POST" id="deleteBtnWrap" >

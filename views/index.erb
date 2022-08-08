@@ -3,9 +3,9 @@
   <a href="./new"><div id="addBtn">追加</div></a>
 </header>
 <div class="lists">
-  <ui>
+  <ul>
     <% @data_list.each do |data| %>
-      <li><a href="<%= "/show/#{data[0]}" %>"><%= data[1] %></a></li>
+      <a href="<%= "/show/#{data[0]}" %>"><li><%= data[1] %></li></a>
     <% end %>
-  </ui>
+  </ul>
 </div>
