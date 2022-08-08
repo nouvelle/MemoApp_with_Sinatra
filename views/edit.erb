@@ -2,11 +2,11 @@
   <h1><a href="/">メモアプリ</a></h1>
 </header>
 <form action="/api/memos/<%= @edit_data[0] %>" method="POST" class="edit">
-  <input type="text" name="title" id="editTitle" value="<%= @edit_data[1] %>" />
-  <textarea name="contents"  id="editContents"><%= @edit_data[2] %></textarea>
+  <input type="text" name="title" id="editTitle" value="<%= @edit_data[1] %>">
+  <textarea name="contents" id="editContents"><%= @edit_data[2] %></textarea>
   <input type="hidden" name="_method" value="PATCH">
   <div class="btnWrap">
     <a href="#" onclick="history.back(-1);return false;" id="backBtn">戻る</a>
-    <input type="submit" value="変更" id="updateBtn" />
+    <input type="submit" value="変更" id="updateBtn">
   </div>
 </form>
