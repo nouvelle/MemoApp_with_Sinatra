@@ -8,7 +8,7 @@ name = ENV['DATABASE_NAME']
 port = ENV['DATABASE_PORT']
 
 uri = "postgres://#{user}:#{pw}@#{host}:#{port}/#{name}"
-conn = PG::Connection.new(@uri)
+conn = PG::Connection.new(uri)
 
 sql1 = "CREATE TABLE memos (
   id SERIAL NOT NULL,
