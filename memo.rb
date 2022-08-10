@@ -3,22 +3,22 @@
 # Memoクラス
 class Memo
   def initialize
-    host =  ENV['DATABASE_HOST']
-    user =  ENV['DATABASE_USER']
-    pw =  ENV['DATABASE_PASSWORD']
-    name =  ENV['DATABASE_NAME']
-    port =  ENV['DATABASE_PORT']
+    host = ENV['DATABASE_HOST']
+    user = ENV['DATABASE_USER']
+    pw = ENV['DATABASE_PASSWORD']
+    name = ENV['DATABASE_NAME']
+    port = ENV['DATABASE_PORT']
     @uri = "postgres://#{user}:#{pw}@#{host}:#{port}/#{name}"
     @conn = PG::Connection.new(@uri)
   end
 
   def get
     @data_list = []
-    sql = "SELECT * FROM memos ORDER BY id"
-    @conn.exec_params(sql) do |result|
+    sql = 'SELECT * FROM memos ORDER BY id'
+    @conn.exec(sql) do |result|
       result.each do |row|
         tmp = []
-        tmp.push(row["id"], row["title"], row["contents"])
+        tmp.push(row['id'], row['title'], row['contents'])
         @data_list.push(tmp)
       end
     end
@@ -28,9 +28,9 @@ class Memo
   def get_by_id(id)
     output = []
     sql = "SELECT * FROM memos WHERE id = #{id}"
-    @conn.exec_params(sql) do |result|
+    @conn.exec(sql) do |result|
       result.each do |row|
-        output = [row["id"], row["title"], row["contents"]]
+        output = [row['id'], row['title'], row['contents']]
       end
     end
     output
@@ -38,16 +38,16 @@ class Memo
 
   def create(title, contents)
     sql = "INSERT INTO memos (title, contents) VALUES ('#{title}', '#{contents}')"
-    @conn.exec_params(sql)
+    @conn.exec(sql)
   end
 
   def update(id, title, contents)
     sql = "UPDATE memos SET title = '#{title}', contents = '#{contents}' WHERE id = #{id}"
-    @conn.exec_params(sql)
+    @conn.exec(sql)
   end
 
   def delete(id)
     sql = "DELETE FROM memos WHERE id = #{id}"
-    @conn.exec_params(sql)
+    @conn.exec(sql)
   end
 end
