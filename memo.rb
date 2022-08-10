@@ -27,8 +27,8 @@ class Memo
 
   def get_by_id(id)
     output = []
-    sql = "SELECT * FROM memos WHERE id = #{id}"
-    @conn.exec(sql) do |result|
+    sql = "SELECT * FROM memos WHERE id = $1"
+    @conn.exec_params(sql, [id]) do |result|
       result.each do |row|
         output = [row['id'], row['title'], row['contents']]
       end
@@ -37,17 +37,17 @@ class Memo
   end
 
   def create(title, contents)
-    sql = "INSERT INTO memos (title, contents) VALUES ('#{title}', '#{contents}')"
-    @conn.exec(sql)
+    sql = "INSERT INTO memos (title, contents) VALUES ($1, $2)"
+    @conn.exec_params(sql, [title, contents])
   end
 
   def update(id, title, contents)
-    sql = "UPDATE memos SET title = '#{title}', contents = '#{contents}' WHERE id = #{id}"
-    @conn.exec(sql)
+    sql = "UPDATE memos SET title = $2, contents = $3 WHERE id = $1"
+    @conn.exec_params(sql, [id, title, contents])
   end
 
   def delete(id)
-    sql = "DELETE FROM memos WHERE id = #{id}"
-    @conn.exec(sql)
+    sql = "DELETE FROM memos WHERE id = $1"
+    @conn.exec_params(sql, [id])
   end
 end

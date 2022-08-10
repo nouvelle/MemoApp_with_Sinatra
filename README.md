@@ -29,10 +29,13 @@ $ cp .env.sample .env
 $ psql 
 =# CREATE DATABASE sinatra_db;
 
-# 6. アプリを起動する
+# 6. マイグレーションファイルの実行（初回のみ）
+$ ruby db/migrate.ruby 
+
+# 7. アプリを起動する
 $ ruby app.rb
 
-# 7. http://localhost:4567/ にアクセスできたらセットアップ完了です 👍
+# 8. http://localhost:4567/ にアクセスできたらセットアップ完了です 👍
 ```
 
 ## リンターチェック
