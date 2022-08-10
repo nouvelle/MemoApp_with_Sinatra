@@ -3,44 +3,51 @@
 # Memoクラス
 class Memo
   def initialize
-    @data_list = CSV.read('./memo_db.csv').sort_by { |x| x[0].to_i }
+    host =  ENV['DATABASE_HOST']
+    user =  ENV['DATABASE_USER']
+    pw =  ENV['DATABASE_PASSWORD']
+    name =  ENV['DATABASE_NAME']
+    port =  ENV['DATABASE_PORT']
+    @uri = "postgres://#{user}:#{pw}@#{host}:#{port}/#{name}"
+    @conn = PG::Connection.new(@uri)
   end
 
   def get
+    @data_list = []
+    sql = "SELECT * FROM memos ORDER BY id"
+    @conn.exec_params(sql) do |result|
+      result.each do |row|
+        tmp = []
+        tmp.push(row["id"], row["title"], row["contents"])
+        @data_list.push(tmp)
+      end
+    end
     @data_list
   end
 
   def get_by_id(id)
-    result = []
-    @data_list.each do |data|
-      result = data if data[0] == id
+    output = []
+    sql = "SELECT * FROM memos WHERE id = #{id}"
+    @conn.exec_params(sql) do |result|
+      result.each do |row|
+        output = [row["id"], row["title"], row["contents"]]
+      end
     end
-    result
+    output
   end
 
   def create(title, contents)
-    id = @data_list.map { |array| array[0].to_i }.max
-    CSV.open('./memo_db.csv', 'a') do |csv|
-      csv << [id.to_i + 1, title, contents]
-    end
+    sql = "INSERT INTO memos (title, contents) VALUES ('#{title}', '#{contents}')"
+    @conn.exec_params(sql)
   end
 
   def update(id, title, contents)
-    @data_list.delete_if { |array| array[0] == id }
-    CSV.open('./memo_db.csv', 'w') do |csv|
-      @data_list.each do |array|
-        csv << array
-      end
-      csv << [id, title, contents]
-    end
+    sql = "UPDATE memos SET title = '#{title}', contents = '#{contents}' WHERE id = #{id}"
+    @conn.exec_params(sql)
   end
 
   def delete(id)
-    @data_list.delete_if { |array| array[0] == id }
-    CSV.open('./memo_db.csv', 'w') do |csv|
-      @data_list.each do |array|
-        csv << array
-      end
-    end
+    sql = "DELETE FROM memos WHERE id = #{id}"
+    @conn.exec_params(sql)
   end
 end

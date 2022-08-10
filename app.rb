@@ -4,7 +4,9 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'csv'
 require './memo'
+require 'pg'
 require 'erb'
+require 'dotenv/load'
 
 # module Helper
 module Helper
