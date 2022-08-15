@@ -1,0 +1,11 @@
+<header>
+  <h1>メモアプリ</h1>
+  <a href="./new"><div id="addBtn">追加</div></a>
+</header>
+<div class="lists">
+  <ul>
+    <% @data_list.each do |data| %>
+      <a href="<%= "/show/#{data[0]}" %>"><li><%= h data[1] %></li></a>
+    <% end %>
+  </ul>
+</div>

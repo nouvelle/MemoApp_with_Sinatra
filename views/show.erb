@@ -1,0 +1,14 @@
+<header>
+  <h1><a href="/">メモアプリ</a></h1>
+</header>
+<div class="show">
+  <input disabled value="<%= h @show_data[1] %>" id="showTitle">
+  <textarea disabled id="showContents"><%= h @show_data[2] %></textarea>
+  <div class="btnWrap">
+    <a href="<%= "/edit/#{@show_data[0]}" %>" id="changeBtn">変更</a>
+    <form action="<%= "/api/memos/#{@show_data[0]}" %>" method="POST" id="deleteBtnWrap">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="削除" id="deleteBtn">
+    </form>
+  </div>
+</div>

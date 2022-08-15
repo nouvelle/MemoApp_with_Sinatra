@@ -1,0 +1,211 @@
+html, body {
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+/* 共通 */
+header {
+  width: 100%;
+  height: 80px;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+/* index */
+#addBtn {
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+}
+#addBtn:hover {
+  background: #eee;
+}
+#addBtn:active {
+  background: #ddd;
+}
+.lists {
+  margin: 20px 30px;
+  font-size: 24px;
+}
+ul {
+  padding: 0;
+  position: relative;
+}
+
+ul li {
+  color: #333333;
+  border-left: solid 6px #2d8fdd;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  list-style-type: none;
+}
+ul li:hover {
+  background: #f1f8ff;
+}
+
+/* new */
+.new {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+}
+#newTitle {
+  height: 50px;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+#newContents {
+  height: 200px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+#saveBtn {
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+}
+
+/* show */
+.show {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+}
+#showTitle {
+  height: 50px;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+#showContents {
+  height: 200px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.btnWrap {
+  display: flex;
+  justify-content: center;
+}
+#changeBtn,
+#deleteBtnWrap {
+  width: 35%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+}
+#deleteBtn {
+  width: 100%;
+  height: 38px;
+  border-radius: 15px;
+  padding: 0;
+  border: none;
+  background: #fff;
+}
+
+/* edit */
+.edit {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+}
+#editTitle {
+  height: 50px;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+#editContents {
+  height: 200px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.btnWrap {
+  display: flex;
+  justify-content: center;
+}
+#backBtn,
+#updateBtn {
+  width: 35%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+}
+
+/* 404 */
+.notFound {
+  padding: 10px 25px;
+}
+.notFound h1 {
+  margin: 20px 20px 40px;
+}
+#goToTopBtn {
+  width: 130px;
+  height: 40px;
+  margin: 0 auto;
+  line-height: 40px;
+}
+
+/* ボタン */
+#addBtn,
+#saveBtn,
+#changeBtn,
+#deleteBtnWrap,
+#backBtn,
+#updateBtn,
+#goToTopBtn {
+  text-align: center;
+  background: #fff;
+  border-radius: 15px;
+  display: block;
+}
+#addBtn,
+#saveBtn,
+#changeBtn,
+#updateBtn,
+#goToTopBtn {
+  border: 1px solid #2d8fdd;
+}
+#backBtn {
+  border: 1px solid #2ddd8b;
+}
+#deleteBtnWrap {
+  border: 1px solid #dd2d36;
+}
+#addBtn:hover,
+#saveBtn:hover,
+#changeBtn:hover,
+#updateBtn:hover,
+#goToTopBtn:hover {
+  background: #f1f8ff;
+  cursor: pointer;
+}
+#backBtn:hover {
+  background: #f1fff6;
+  cursor: pointer;
+}
+#deleteBtnWrap:hover,
+#deleteBtn:hover {
+  background: #fff1f4;
+  cursor: pointer;
+}
+#addBtn:active,
+#saveBtn:active,
+#changeBtn:active,
+#updateBtn:active,
+#goToTopBtn:active {
+  background: #2d8fdd;
+}
+#backBtn:active {
+  background: #2ddd8b;
+}
+#deleteBtnWrap:active,
+#deleteBtn:active {
+  background: #dd2d36;
+}
