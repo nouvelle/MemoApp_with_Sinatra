@@ -11,12 +11,14 @@ helpers do
   end
 end
 
+memo = Memo.new
+
 ####################
 # View画面からの要求
 ####################
 get '/' do
   @title = 'メモ帳 📋'
-  @data_list = Memo.new.get
+  @data_list = memo.get
   erb :index
 end
 
@@ -27,13 +29,13 @@ end
 
 get '/show/:id' do |id|
   @title = 'メモ帳 📋 - 表示'
-  @show_data = Memo.new.get_by_id(id)
+  @show_data = memo.get_by_id(id)
   erb :show
 end
 
 get '/edit/:id' do |id|
   @title = 'メモ帳 📋 - 修正'
-  @edit_data = Memo.new.get_by_id(id)
+  @edit_data = memo.get_by_id(id)
   erb :edit
 end
 
@@ -45,21 +47,21 @@ end
 # API呼び出し
 ####################
 post '/api/memos' do
-  Memo.new.create(params[:title], params[:contents])
+  memo.create(params[:title], params[:contents])
 
   redirect '/'
   erb :index
 end
 
 patch '/api/memos/:id' do |id|
-  Memo.new.update(id, params[:title], params[:contents])
+  memo.update(id, params[:title], params[:contents])
 
   redirect '/'
   erb :index
 end
 
 delete '/api/memos/:id' do |id|
-  Memo.new.delete(id)
+  memo.delete(id)
 
   redirect '/'
   erb :index
