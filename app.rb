@@ -5,24 +5,22 @@ require 'sinatra/reloader'
 require 'csv'
 require './memo'
 require 'pg'
-require 'erb'
 require 'dotenv/load'
 
-# module Helper
-module Helper
-  def html_escape_helper(text)
-    ERB::Util.html_escape(text)
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
   end
-
-  module_function :html_escape_helper
 end
+
+memo = Memo.new
 
 ####################
 # View画面からの要求
 ####################
 get '/' do
   @title = 'メモ帳 📋'
-  @data_list = Memo.new.get
+  @data_list = memo.get
   erb :index
 end
 
@@ -33,13 +31,13 @@ end
 
 get '/show/:id' do |id|
   @title = 'メモ帳 📋 - 表示'
-  @show_data = Memo.new.get_by_id(id)
+  @show_data = memo.get_by_id(id)
   erb :show
 end
 
 get '/edit/:id' do |id|
   @title = 'メモ帳 📋 - 修正'
-  @edit_data = Memo.new.get_by_id(id)
+  @edit_data = memo.get_by_id(id)
   erb :edit
 end
 
@@ -51,25 +49,21 @@ end
 # API呼び出し
 ####################
 post '/api/memos' do
-  title = Helper.html_escape_helper(params[:title])
-  contents = Helper.html_escape_helper(params[:contents])
-  Memo.new.create(title, contents)
+  memo.create(params[:title], params[:contents])
 
   redirect '/'
   erb :index
 end
 
 patch '/api/memos/:id' do |id|
-  title = Helper.html_escape_helper(params[:title])
-  contents = Helper.html_escape_helper(params[:contents])
-  Memo.new.update(id, title, contents)
+  memo.update(id, params[:title], params[:contents])
 
   redirect '/'
   erb :index
 end
 
 delete '/api/memos/:id' do |id|
-  Memo.new.delete(id)
+  memo.delete(id)
 
   redirect '/'
   erb :index
