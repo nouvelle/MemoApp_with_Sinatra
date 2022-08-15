@@ -25,7 +25,7 @@ $ bundle install
 # 4. アプリを起動する
 $ ruby app.rb
 
-# 5. [http://localhost:4567/](http://localhost:4567/) にアクセスできたらセットアップ完了です 👍
+# 5. http://localhost:4567/ にアクセスできたらセットアップ完了です 👍
 ```
 
 ## リンターチェック

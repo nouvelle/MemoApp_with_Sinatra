@@ -4,15 +4,11 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'csv'
 require './memo'
-require 'erb'
 
-# module Helper
-module Helper
-  def html_escape_helper(text)
-    ERB::Util.html_escape(text)
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
   end
-
-  module_function :html_escape_helper
 end
 
 ####################
@@ -49,18 +45,14 @@ end
 # API呼び出し
 ####################
 post '/api/memos' do
-  title = Helper.html_escape_helper(params[:title])
-  contents = Helper.html_escape_helper(params[:contents])
-  Memo.new.create(title, contents)
+  Memo.new.create(params[:title], params[:contents])
 
   redirect '/'
   erb :index
 end
 
 patch '/api/memos/:id' do |id|
-  title = Helper.html_escape_helper(params[:title])
-  contents = Helper.html_escape_helper(params[:contents])
-  Memo.new.update(id, title, contents)
+  Memo.new.update(id, params[:title], params[:contents])
 
   redirect '/'
   erb :index
