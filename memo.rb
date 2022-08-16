@@ -8,21 +8,21 @@ class Memo
     pw = ENV['DATABASE_PASSWORD']
     name = ENV['DATABASE_NAME']
     port = ENV['DATABASE_PORT']
-    @uri = "postgres://#{user}:#{pw}@#{host}:#{port}/#{name}"
-    @conn = PG::Connection.new(@uri)
+    uri = "postgres://#{user}:#{pw}@#{host}:#{port}/#{name}"
+    @conn = PG::Connection.new(uri)
   end
 
-  def get
-    @data_list = []
+  def all
+    data_list = []
     sql = 'SELECT * FROM memos ORDER BY id'
     @conn.exec(sql) do |result|
       result.each do |row|
         tmp = []
         tmp.push(row['id'], row['title'], row['contents'])
-        @data_list.push(tmp)
+        data_list.push(tmp)
       end
     end
-    @data_list
+    data_list
   end
 
   def get_by_id(id)

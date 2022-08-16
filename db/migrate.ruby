@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pg'
 require 'dotenv/load'
 
@@ -17,7 +19,7 @@ sql1 = "CREATE TABLE memos (
 );"
 conn.exec(sql1)
 
-sql2 = "INSERT INTO memos (title, contents) VALUES 
+sql2 = "INSERT INTO memos (title, contents) VALUES
 ('Linuxの設定', ''),
 ('GitHubの使い方', ''),
 ('Rubyの勉強', ''),

@@ -20,7 +20,7 @@ memo = Memo.new
 ####################
 get '/' do
   @title = 'メモ帳 📋'
-  @data_list = memo.get
+  @data_list = memo.all
   erb :index
 end
 
