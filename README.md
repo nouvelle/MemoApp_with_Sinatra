@@ -22,10 +22,20 @@ $ cd MemoApp_with_Sinatra
 # 3. パッケージをインストールする
 $ bundle install
 
-# 4. アプリを起動する
+# 4. .env.sample をコピーして .env ファイルを作成し、環境情報を記載する
+$ cp .env.sample .env
+
+# 5. データベースを作成する
+$ psql 
+=# CREATE DATABASE sinatra_db;
+
+# 6. マイグレーションファイルの実行（初回のみ）
+$ ruby db/migrate.ruby 
+
+# 7. アプリを起動する
 $ ruby app.rb
 
-# 5. http://localhost:4567/ にアクセスできたらセットアップ完了です 👍
+# 8. http://localhost:4567/ にアクセスできたらセットアップ完了です 👍
 ```
 
 ## リンターチェック
@@ -38,6 +48,3 @@ $ bundle exec rubocop
 # 2. ERB Lint チェック
 $ bundle exec erblint --lint-all
 ```
-
-## その他
-- 保存データは `memo_db.csv` ファイルに保存されていきます。
